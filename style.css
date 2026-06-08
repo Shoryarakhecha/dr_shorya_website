@@ -848,7 +848,7 @@ address { font-style: normal; }
 .team-socials [data-lucide] { width: 14px; height: 14px; }
 
 /* ── TESTIMONIALS ─────────────────────────────────────────── */
-.testimonials-section { background: var(--clr-bg); overflow: hidden; }
+/* .testimonials-section { background: var(--clr-bg); overflow: hidden; }
 
 .testimonials-track {
   overflow: hidden;
@@ -917,7 +917,7 @@ address { font-style: normal; }
   background: var(--clr-primary);
   width: 24px;
   border-radius: 4px;
-}
+} */
 
 /* ── BOOK ─────────────────────────────────────────────────── */
 .book-section { background: var(--clr-bg-2); }

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initRevealAnimations();
   initCounters();
-  initTestimonials();
+//   initTestimonials();
   initFAQ();
   initCTALinks();
   initClinicHours();
@@ -198,130 +198,130 @@ function initCounters() {
 }
 
 /* ── TESTIMONIALS SLIDER ─────────────────────────────────── */
-function initTestimonials() {
-  const inner = document.getElementById("testimonialsInner");
-  const track = document.getElementById("testimonialsTrack");
-  const prevBtn = document.getElementById("testiPrev");
-  const nextBtn = document.getElementById("testiNext");
-  const dotsContainer = document.getElementById("testiDots");
+// function initTestimonials() {
+//   const inner = document.getElementById("testimonialsInner");
+//   const track = document.getElementById("testimonialsTrack");
+//   const prevBtn = document.getElementById("testiPrev");
+//   const nextBtn = document.getElementById("testiNext");
+//   const dotsContainer = document.getElementById("testiDots");
 
-  if (!inner || !track) return;
+//   if (!inner || !track) return;
 
-  const cards = Array.from(inner.children);
-  const total = cards.length;
-  let current = 0;
-  let isDragging = false;
-  let startX = 0;
-  let startTranslate = 0;
-  let autoplayTimer;
+//   const cards = Array.from(inner.children);
+//   const total = cards.length;
+//   let current = 0;
+//   let isDragging = false;
+//   let startX = 0;
+//   let startTranslate = 0;
+//   let autoplayTimer;
 
-  // Responsive: how many cards visible
-  const getVisible = () => (window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
+//   // Responsive: how many cards visible
+//   const getVisible = () => (window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3);
 
-  // Build dots
-  const buildDots = () => {
-    dotsContainer.innerHTML = "";
-    const pages = Math.ceil(total / getVisible());
-    for (let i = 0; i < pages; i++) {
-      const dot = document.createElement("button");
-      dot.className = `testi-dot${i === 0 ? " active" : ""}`;
-      dot.setAttribute("aria-label", `Go to page ${i + 1}`);
-      dot.addEventListener("click", () => goTo(i));
-      dotsContainer.appendChild(dot);
-    }
-  };
+//   // Build dots
+//   const buildDots = () => {
+//     dotsContainer.innerHTML = "";
+//     const pages = Math.ceil(total / getVisible());
+//     for (let i = 0; i < pages; i++) {
+//       const dot = document.createElement("button");
+//       dot.className = `testi-dot${i === 0 ? " active" : ""}`;
+//       dot.setAttribute("aria-label", `Go to page ${i + 1}`);
+//       dot.addEventListener("click", () => goTo(i));
+//       dotsContainer.appendChild(dot);
+//     }
+//   };
 
-  const updateDots = () => {
-    const dots = dotsContainer.querySelectorAll(".testi-dot");
-    const page = Math.floor(current / getVisible());
-    dots.forEach((d, i) => d.classList.toggle("active", i === page));
-  };
+//   const updateDots = () => {
+//     const dots = dotsContainer.querySelectorAll(".testi-dot");
+//     const page = Math.floor(current / getVisible());
+//     dots.forEach((d, i) => d.classList.toggle("active", i === page));
+//   };
 
-  const getCardWidth = () => {
-    const gap = 20; // matches CSS gap: 1.25rem
-    const visCount = getVisible();
-    const totalGap = gap * (visCount - 1);
-    return (track.offsetWidth - totalGap) / visCount;
-  };
+//   const getCardWidth = () => {
+//     const gap = 20; // matches CSS gap: 1.25rem
+//     const visCount = getVisible();
+//     const totalGap = gap * (visCount - 1);
+//     return (track.offsetWidth - totalGap) / visCount;
+//   };
 
-  const getTranslate = (idx) => {
-    const cw = getCardWidth() + 20;
-    return -(idx * cw);
-  };
+//   const getTranslate = (idx) => {
+//     const cw = getCardWidth() + 20;
+//     return -(idx * cw);
+//   };
 
-  const goTo = (idx) => {
-    const maxIdx = total - getVisible();
-    current = Math.max(0, Math.min(idx, maxIdx));
-    inner.style.transform = `translateX(${getTranslate(current)}px)`;
-    updateDots();
-  };
+//   const goTo = (idx) => {
+//     const maxIdx = total - getVisible();
+//     current = Math.max(0, Math.min(idx, maxIdx));
+//     inner.style.transform = `translateX(${getTranslate(current)}px)`;
+//     updateDots();
+//   };
 
-  const next = () => goTo(current + getVisible());
-  const prev = () => goTo(current - getVisible());
+//   const next = () => goTo(current + getVisible());
+//   const prev = () => goTo(current - getVisible());
 
-  const startAutoplay = () => {
-    stopAutoplay();
-    autoplayTimer = setInterval(() => {
-      if (current + getVisible() >= total) goTo(0);
-      else next();
-    }, 5000);
-  };
+//   const startAutoplay = () => {
+//     stopAutoplay();
+//     autoplayTimer = setInterval(() => {
+//       if (current + getVisible() >= total) goTo(0);
+//       else next();
+//     }, 5000);
+//   };
 
-  const stopAutoplay = () => clearInterval(autoplayTimer);
+//   const stopAutoplay = () => clearInterval(autoplayTimer);
 
-  nextBtn?.addEventListener("click", () => { next(); startAutoplay(); });
-  prevBtn?.addEventListener("click", () => { prev(); startAutoplay(); });
+//   nextBtn?.addEventListener("click", () => { next(); startAutoplay(); });
+//   prevBtn?.addEventListener("click", () => { prev(); startAutoplay(); });
 
-  // Touch / drag
-  const getEventX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+//   // Touch / drag
+//   const getEventX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
 
-  track.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    startX = getEventX(e);
-    startTranslate = getTranslate(current);
-    inner.style.transition = "none";
-    stopAutoplay();
-  });
+//   track.addEventListener("mousedown", (e) => {
+//     isDragging = true;
+//     startX = getEventX(e);
+//     startTranslate = getTranslate(current);
+//     inner.style.transition = "none";
+//     stopAutoplay();
+//   });
 
-  track.addEventListener("touchstart", (e) => {
-    isDragging = true;
-    startX = getEventX(e);
-    startTranslate = getTranslate(current);
-    inner.style.transition = "none";
-    stopAutoplay();
-  }, { passive: true });
+//   track.addEventListener("touchstart", (e) => {
+//     isDragging = true;
+//     startX = getEventX(e);
+//     startTranslate = getTranslate(current);
+//     inner.style.transition = "none";
+//     stopAutoplay();
+//   }, { passive: true });
 
-  const onMove = (e) => {
-    if (!isDragging) return;
-    const delta = getEventX(e) - startX;
-    inner.style.transform = `translateX(${startTranslate + delta}px)`;
-  };
+//   const onMove = (e) => {
+//     if (!isDragging) return;
+//     const delta = getEventX(e) - startX;
+//     inner.style.transform = `translateX(${startTranslate + delta}px)`;
+//   };
 
-  const onEnd = (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
-    const diff = startX - endX;
-    inner.style.transition = "";
+//   const onEnd = (e) => {
+//     if (!isDragging) return;
+//     isDragging = false;
+//     const endX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+//     const diff = startX - endX;
+//     inner.style.transition = "";
 
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next(); else prev();
-    } else {
-      goTo(current);
-    }
-    startAutoplay();
-  };
+//     if (Math.abs(diff) > 50) {
+//       if (diff > 0) next(); else prev();
+//     } else {
+//       goTo(current);
+//     }
+//     startAutoplay();
+//   };
 
-  document.addEventListener("mousemove", onMove);
-  document.addEventListener("mouseup", onEnd);
-  track.addEventListener("touchmove", onMove, { passive: true });
-  track.addEventListener("touchend", onEnd);
+//   document.addEventListener("mousemove", onMove);
+//   document.addEventListener("mouseup", onEnd);
+//   track.addEventListener("touchmove", onMove, { passive: true });
+//   track.addEventListener("touchend", onEnd);
 
-  // Init
-  buildDots();
-  window.addEventListener("resize", () => { buildDots(); goTo(current); });
-  startAutoplay();
-}
+//   // Init
+//   buildDots();
+//   window.addEventListener("resize", () => { buildDots(); goTo(current); });
+//   startAutoplay();
+// }
 
 /* ── FAQ ACCORDION ───────────────────────────────────────── */
 function initFAQ() {
